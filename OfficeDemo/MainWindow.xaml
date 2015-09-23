@@ -1,0 +1,26 @@
+﻿<Window x:Class="OfficeDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel Margin="16 0 16 0">
+        <Grid Margin="0 16 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">Name</Label>
+            <TextBox Name="nameTextBox" Grid.Column="1"></TextBox>
+            
+        </Grid>
+        <Grid Margin="0 16 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">Age</Label>
+            <TextBox Name="ageTextBox" Grid.Column="1"></TextBox>
+        </Grid>
+        
+        <Button Height="24"  Margin="0 16" Click="makeDoc">New</Button>
+    </StackPanel>
+</Window>
