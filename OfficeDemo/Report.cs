@@ -8,10 +8,11 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace OfficeDemo
 {
-    
-    class Report
+
+    class Report : IDisposable
     {
         string outputPath;
+        private bool disposed = false;
 
         public Report(string templatePath, string outputPath, Word._Application app) 
         {
@@ -33,8 +34,36 @@ namespace OfficeDemo
         }
 
         public void SaveOut() {
+            checkIfDisposed();
             document.SaveAs2(outputPath);
         }
+
+        public void Dispose() {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected void Dispose(bool disposing) {
+            if (disposing) {
+                document.Close();
+                document = null;
+            }
+
+            this.disposed = true;
+        }
+
+        ~Report() {
+            this.Dispose(disposing: false);
+        }
+
+        private void checkIfDisposed() {
+            if (this.disposed)
+            {
+                throw new ObjectDisposedException("The report doc has been disposed of.");
+            }
+        }
+
+
     }
 
 

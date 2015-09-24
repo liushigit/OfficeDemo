@@ -31,13 +31,17 @@ namespace OfficeDemo
         private void makeDoc(object sender, RoutedEventArgs e)
         {
             var wordApp = new Word.Application();
-            var report = new Report(templatePath: "C:\\Users\\liush_000\\Desktop\\mydoc3.docx", 
-                                    outputPath: "C:\\Users\\liush_000\\Desktop\\mydoc5.docx", 
-                                    app: wordApp);
-            report.SetBookmarkNamed("name", nameTextBox.Text);
-            report.SetBookmarkNamed("age", ageTextBox.Text);
-            report.SaveOut();
 
+
+            using (var report = new Report(templatePath: @"C:\Users\shiliu\Desktop\mydoc3.docx", 
+                                    outputPath: @"C:\Users\shiliu\Desktop\mydoc5.docx", 
+                                    app: wordApp))
+            {
+                report.SetBookmarkNamed("name", nameTextBox.Text);
+                report.SetBookmarkNamed("age", ageTextBox.Text);
+                report.SaveOut();
+            }
+            
             ((Word._Application)wordApp).Quit(false);
             wordApp = null;
             GC.Collect();
